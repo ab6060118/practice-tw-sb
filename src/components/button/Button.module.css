@@ -1,0 +1,6 @@
+.button {
+  @apply flex border border-green-600;
+  .icon {
+    height: 100px;
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "jsx": "react",
+    "declaration": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "dist",
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
+  },
+  "files": ["src/index.ts", "./src/custom.d.ts"]
+}
