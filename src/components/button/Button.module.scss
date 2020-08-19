@@ -1,0 +1,51 @@
+.button {
+  @apply outline-none flex border items-center px-6;
+  border-color: #707070;
+  &.action {
+    @apply rounded h-28;
+  }
+  &.edit {
+    @apply rounded-xl h-30;
+  }
+  .icon {
+    @apply h-4 w-4 flex-shrink-0 border;
+  }
+  .text {
+    &:not(:first-child) {
+      @apply ml-2;
+    }
+
+    @apply flex-grow text-sm;
+    color: #2F2F2F;
+  }
+  .trigger {
+    @apply ml-2;
+    border-top: 3px solid black;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+  }
+  &:hover {
+    border-color: #848484;
+    .text {
+      color: #6B6E6E;
+    }
+  }
+  &:active {
+    @apply outline-none border-black;
+    .text {
+      @apply text-black;
+    }
+  }
+  &:focus{
+    @apply outline-none;
+  }
+  &:disabled {
+    border-color: #D6D6D6;
+    .text {
+      color: #D6D6D6;
+    }
+    .icon {
+      @apply opacity-50;
+    }
+  }
+}

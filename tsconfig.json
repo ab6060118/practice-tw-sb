@@ -8,7 +8,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "outDir": "dist",
-    "plugins": [{ "name": "typescript-plugin-css-modules" }]
+    "sourceMap": true
   },
-  "files": ["src/index.ts", "./src/custom.d.ts"]
+  "files": ["src/index.ts", "src/custom.d.ts"]
 }

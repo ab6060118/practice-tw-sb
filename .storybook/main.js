@@ -9,20 +9,15 @@ module.exports = {
     // Make whatever fine-grained changes you need
     config.module.rules.find(
       rule => rule.test.toString() === "/\\.css$/"
-    ).exclude = /\.module\.css$/;
+    ).exclude = /\.scss$/;
 
     config.module.rules.push({
-      test: /\.module\.css$/,
+      test: /\.scss$/,
       use: [
         "style-loader",
-        "css-modules-typescript-loader",
-        {
-          loader: "css-loader",
-          options: {
-            modules: true
-          }
-        },
-        'postcss-loader',
+        'css-loader',
+        "postcss-loader",
+        "sass-loader"
       ]
     });
     // Return the altered config

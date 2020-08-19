@@ -1,9 +1,13 @@
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = (_env, options) => ({
+  mode: 'development',
+  devtool: 'source-map',
   entry: {
     index: './src/index.ts',
   },
@@ -24,16 +28,13 @@ module.exports = (_env, options) => ({
         use: ['babel-loader', 'ts-loader'],
       },
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         use: [
           'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-            },
-          },
+          // MiniCssExtractPlugin.loader,
+          'css-loader',
           'postcss-loader',
+          'sass-loader',
         ],
       },
       {
@@ -46,13 +47,12 @@ module.exports = (_env, options) => ({
     ],
   },
   plugins: [
+    new MiniCssExtractPlugin(),
     new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-    }),
   ],
   optimization: {
     minimize: options.mode === 'production',
+    minimizer: [new CssMinimizerPlugin({ sourceMap: true }), new UglifyJsPlugin({ sourceMap: true })],
   },
   // devServer: {
   // overlay: true,
