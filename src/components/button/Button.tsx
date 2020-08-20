@@ -8,7 +8,7 @@ type MenuItem = {
   handler: ReactEventHandler<HTMLButtonElement>
 };
 
-export type ButtonProps = {
+type CommonProps = {
   text?: string,
   iconCls?: string,
   className?: string,
@@ -16,8 +16,17 @@ export type ButtonProps = {
   onClick?: ReactEventHandler<HTMLButtonElement>
   style?: TypeStyle
   type?: Type
-  menu?: () => JSX.Element | MenuItem[]
 };
+
+type WithMenu = {
+  menu?: MenuItem[]
+};
+
+type WithElement = {
+  menu?: () => JSX.Element
+};
+
+export type ButtonProps = CommonProps & (WithMenu | WithElement);
 
 const Button:FC<ButtonProps> = ({
   text, iconCls, className = '', onClick, disabled, style = 'outline', type = 'action', menu,
