@@ -2,7 +2,11 @@ import React, { FC, ReactEventHandler, useState } from 'react';
 import Style from './Button.module.scss';
 
 type Type = 'action'|'edit';
-type Style = 'outline'|'contained';
+type TypeStyle = 'outline'|'contained';
+type MenuItem = {
+  text: string
+  handler: ReactEventHandler<HTMLButtonElement>
+};
 
 export type ButtonProps = {
   text?: string,
@@ -10,16 +14,16 @@ export type ButtonProps = {
   className?: string,
   disabled?: boolean,
   onClick?: ReactEventHandler<HTMLButtonElement>
-  style?: Style
+  style?: TypeStyle
   type?: Type
-  menu?: any
+  menu?: () => JSX.Element | MenuItem[]
 };
 
 const Button:FC<ButtonProps> = ({
   text, iconCls, className = '', onClick, disabled, style = 'outline', type = 'action', menu,
 }: ButtonProps) => {
   const {
-    button, icon, text: textStyle, trigger, action, edit, contained,
+    button, icon, text: textStyle, trigger, action, edit, contained, menu: menuStyle,
   } = Style;
   const [showMenu, setShowMenu] = useState(false);
 
@@ -28,7 +32,7 @@ const Button:FC<ButtonProps> = ({
     edit,
   };
 
-  const styleMap: {[key in Style]: string} = {
+  const styleMap: {[key in TypeStyle]: string} = {
     outline: '',
     contained,
   };
@@ -38,11 +42,16 @@ const Button:FC<ButtonProps> = ({
   };
 
   return (
-    <button type="button" className={`${button} ${typeMap[type]} ${styleMap[style]} ${className}`} disabled={disabled} onClick={menu ? toggleMenu : onClick}>
-      {iconCls && <span className={icon} style={{ backgroundImage: 'url(https://picsum.photos/16/16)' }} />}
-      <span className={textStyle}>{ text }</span>
-      {menu && <span className={`${trigger} ${showMenu && 'transform rotate-180'}`} />}
-    </button>
+    <>
+      <button type="button" className={`${button} ${typeMap[type]} ${styleMap[style]} ${className}`} disabled={disabled} onClick={menu ? toggleMenu : onClick}>
+        {iconCls && <span className={`${icon} ${iconCls}`} />}
+        <span className={textStyle}>{ text }</span>
+        {menu && <span className={`${trigger} ${showMenu ? 'transform rotate-180' : ''}`} />}
+      </button>
+      <div className={menuStyle}>
+        {menu && (Array.isArray(menu) ? menu.map((item) => (<span key={`${item.text}`}>{item.text}</span>)) : menu())}
+      </div>
+    </>
   );
 };
 

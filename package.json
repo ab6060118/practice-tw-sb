@@ -1,6 +1,6 @@
 {
   "name": "@daubakao/practice-tw-sb",
-  "version": "1.0.13",
+  "version": "1.0.17",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

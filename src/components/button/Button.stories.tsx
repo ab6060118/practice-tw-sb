@@ -16,5 +16,18 @@ Basic.args = {
   iconCls: 'test',
   style: 'contained',
   type: 'edit',
-  menu: 'tes'
+  menu: [
+    {
+      text: '1',
+      handler: () => {}
+    },
+    {
+      text: '2',
+      handler: () => {}
+    },
+    {
+      text: '3',
+      handler: () => {}
+    },
+  ]//() => <div>Menu</div>
 };
