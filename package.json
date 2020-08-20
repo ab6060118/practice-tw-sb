@@ -55,6 +55,7 @@
     "tailwindcss": "^1.6.2",
     "ts-loader": "^8.0.2",
     "typescript": "^3.9.7",
+    "typescript-plugin-css-modules": "^2.4.0",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",

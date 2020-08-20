@@ -14,7 +14,7 @@ Basic.args = {
   text: 'test btn',
   className: 'test',
   iconCls: 'test',
-  style: 'outline',
+  style: 'contained',
   type: 'edit',
   menu: 'tes'
 };
