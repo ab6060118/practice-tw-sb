@@ -1,90 +1,98 @@
-.button {
-  @apply outline-none flex border items-center px-6;
-  border-color: #707070;
+.button-wrap {
+  @apply relative;
 
-  .icon {
-    @apply h-4 w-4 flex-shrink-0;
-  }
+  .button {
+    @apply outline-none flex border items-center px-6;
+    border-color: #707070;
 
-  .text {
-    &:not(:first-child) {
-      @apply ml-2;
-    }
-
-    @apply flex-grow text-sm;
-    color: #2F2F2F;
-  }
-
-  .trigger {
-    @apply ml-2;
-    border-top: 3px solid black;
-    border-left: 3px solid transparent;
-    border-right: 3px solid transparent;
-  }
-
-  &:hover {
-    border-color: #848484;
-    .text {
-      color: #6B6E6E;
-    }
-  }
-
-  &:active {
-    @apply outline-none border-black;
-    .text {
-      @apply text-black;
-    }
-  }
-
-  &:focus{
-    @apply outline-none;
-  }
-
-  &:disabled {
-    border-color: #D6D6D6;
-    .text {
-      color: #D6D6D6;
-    }
     .icon {
-      @apply opacity-50;
+      @apply h-4 w-4 flex-shrink-0;
     }
-  }
-
-  &.action {
-    @apply rounded h-30;
-  }
-
-  &.edit {
-    @apply rounded-xl h-28;
-  }
-
-  &.contained {
-    @apply border-none;
-
-    background-color: #4975F5;
 
     .text {
-      @apply text-white;
+      &:not(:first-child) {
+        @apply ml-2;
+      }
+
+      @apply flex-grow text-sm;
+      color: #2F2F2F;
     }
 
     .trigger {
-      border-top-color: #FFFFFF;
+      @apply ml-2;
+      border-top: 3px solid black;
+      border-left: 3px solid transparent;
+      border-right: 3px solid transparent;
     }
 
     &:hover {
-      background-color: #89A5F4;
+      border-color: #848484;
+      .text {
+        color: #6B6E6E;
+      }
     }
 
     &:active {
-      background-color: #27479F;
+      @apply outline-none border-black;
+      .text {
+        @apply text-black;
+      }
+    }
+
+    &:focus{
+      @apply outline-none;
     }
 
     &:disabled {
-      background-color: #D6D6D6;
+      border-color: #D6D6D6;
+      .text {
+        color: #D6D6D6;
+      }
+      .icon {
+        @apply opacity-50;
+      }
+    }
+
+    &.action {
+      @apply rounded h-30;
+    }
+
+    &.edit {
+      @apply rounded-xl h-28;
+    }
+
+    &.contained {
+      @apply border-none;
+
+      background-color: #4975F5;
+
+      .text {
+        @apply text-white;
+      }
+
+      .trigger {
+        border-top-color: #FFFFFF;
+      }
+
+      &:hover {
+        background-color: #89A5F4;
+      }
+
+      &:active {
+        background-color: #27479F;
+      }
+
+      &:disabled {
+        background-color: #D6D6D6;
+      }
     }
   }
-}
 
-.menu {
-  @apply flex flex-col;
+  .menu {
+    @apply flex flex-col absolute;
+
+    .item {
+      @apply px-2;
+    }
+  }
 }

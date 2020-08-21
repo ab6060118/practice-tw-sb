@@ -1,12 +1,14 @@
 import React from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Story } from '@storybook/react';
-import { Button, ButtonProps } from './Button';
+import { Button, ButtonProps } from '../components/button/Button';
 
 export default {
   title: 'button title',
   component: Button,
 };
 
+// eslint-disable-next-line react/jsx-props-no-spreading
 const Template: Story<ButtonProps> = (args) => <Button {...args} />;
 
 export const Basic = Template.bind({});
@@ -19,15 +21,15 @@ Basic.args = {
   menu: [
     {
       text: '1',
-      handler: () => {}
+      handler: () => {},
     },
     {
       text: '2',
-      handler: () => {}
+      handler: () => {},
     },
     {
       text: '3',
-      handler: () => {}
+      handler: () => {},
     },
-  ]//() => <div>Menu</div>
+  ], // () => <div>Menu</div>
 };

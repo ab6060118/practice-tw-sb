@@ -1,9 +1,11 @@
-import React, { FC, ReactEventHandler, useState } from 'react';
+import React, {
+  FC, ReactEventHandler, useState, ReactElement,
+} from 'react';
 import Style from './Button.module.scss';
 
 type Type = 'action'|'edit';
 type TypeStyle = 'outline'|'contained';
-type MenuItem = {
+type MenuData = {
   text: string
   handler: ReactEventHandler<HTMLButtonElement>
 };
@@ -18,21 +20,21 @@ type CommonProps = {
   type?: Type
 };
 
+type WithMenuData = {
+  menu?: MenuData[]
+};
+
 type WithMenu = {
-  menu?: MenuItem[]
+  menu?: () => ReactElement<{text: string}>
 };
 
-type WithElement = {
-  menu?: () => JSX.Element
-};
-
-export type ButtonProps = CommonProps & (WithMenu | WithElement);
+export type ButtonProps = CommonProps & (WithMenuData | WithMenu);
 
 const Button:FC<ButtonProps> = ({
   text, iconCls, className = '', onClick, disabled, style = 'outline', type = 'action', menu,
 }: ButtonProps) => {
   const {
-    button, icon, text: textStyle, trigger, action, edit, contained, menu: menuStyle,
+    button, icon, text: textStyle, trigger, action, edit, contained, menu: menuStyle, item: itmeStyle,
   } = Style;
   const [showMenu, setShowMenu] = useState(false);
 
@@ -51,16 +53,21 @@ const Button:FC<ButtonProps> = ({
   };
 
   return (
-    <>
+    <div className={Style['button-wrap']}>
       <button type="button" className={`${button} ${typeMap[type]} ${styleMap[style]} ${className}`} disabled={disabled} onClick={menu ? toggleMenu : onClick}>
         {iconCls && <span className={`${icon} ${iconCls}`} />}
         <span className={textStyle}>{ text }</span>
         {menu && <span className={`${trigger} ${showMenu ? 'transform rotate-180' : ''}`} />}
       </button>
-      <div className={menuStyle}>
-        {menu && (Array.isArray(menu) ? menu.map((item) => (<span key={`${item.text}`}>{item.text}</span>)) : menu())}
-      </div>
-    </>
+      {
+        showMenu && (
+          <div className={menuStyle}>
+            { Array.isArray(menu) && menu.map((item) => <span className={itmeStyle}>{item.text}</span>) }
+            { typeof menu === 'function' && menu() }
+          </div>
+        )
+      }
+    </div>
   );
 };
 

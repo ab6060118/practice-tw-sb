@@ -1,0 +1,19 @@
+.item {
+  @apply flex cursor-pointer items-center h-30 pl-4 pr-2;
+
+  .icon{
+    @apply flex-shrink-0;
+  }
+  .text{
+    @apply flex-grow;
+  }
+  .arrow{
+    @apply flex-shrink-0;
+  }
+  &:hover {
+    background-color: #EDF2FF;
+  }
+  &.disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+}

@@ -14,7 +14,8 @@
     "dev": "webpack-dev-server --mode=development",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "deploy-storybook": "storybook-to-ghpages"
   },
   "author": "DaubaKao",
   "license": "ISC",
@@ -27,6 +28,7 @@
     "@storybook/addon-essentials": "^6.0.12",
     "@storybook/addon-links": "^6.0.12",
     "@storybook/react": "^6.0.12",
+    "@storybook/storybook-deployer": "^2.8.6",
     "@typescript-eslint/eslint-plugin": "^3.9.0",
     "@typescript-eslint/parser": "^3.9.0",
     "autoprefixer": "^9.8.6",
