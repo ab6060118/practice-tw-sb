@@ -12,6 +12,7 @@ type MenuData = {
 
 type CommonProps = {
   text?: string,
+  aa?: string,
   iconCls?: string,
   className?: string,
   disabled?: boolean,
@@ -28,11 +29,11 @@ type WithMenu = {
   menu?: () => ReactElement<{text: string}>
 };
 
-export type ButtonProps = CommonProps & (WithMenuData | WithMenu);
+type ButtonProps = CommonProps & (WithMenuData | WithMenu);
 
 const Button:FC<ButtonProps> = ({
   text, iconCls, className = '', onClick, disabled, style = 'outline', type = 'action', menu,
-}: ButtonProps) => {
+}) => {
   const {
     button, icon, text: textStyle, trigger, action, edit, contained, menu: menuStyle, item: itmeStyle,
   } = Style;
@@ -71,4 +72,4 @@ const Button:FC<ButtonProps> = ({
   );
 };
 
-export { Button };
+export { Button, ButtonProps };

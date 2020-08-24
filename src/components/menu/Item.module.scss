@@ -1,14 +1,32 @@
 .item {
-  @apply flex cursor-pointer items-center h-30 pl-4 pr-2;
+  @apply flex cursor-pointer items-center h-30 pl-4 pr-2 relative;
 
+  .sub-menu {
+    @apply absolute top-0 left-0 self-start transform;
+
+    &.out-screen {
+      left: -99999px;
+    }
+    &.right {
+      @apply  translate-x-full
+    }
+    &.left {
+      @apply  -translate-x-full
+    }
+  }
   .icon{
-    @apply flex-shrink-0;
+    @apply flex-shrink-0 w-4 h-4;
   }
   .text{
     @apply flex-grow;
+    &:not(:first-child) {
+      @apply ml-2;
+    }
   }
   .arrow{
-    @apply flex-shrink-0;
+    @apply flex-shrink-0 border-r border-b border-black transform -rotate-45;
+    width: 8.5px;
+    height: 8.5px;
   }
   &:hover {
     background-color: #EDF2FF;
